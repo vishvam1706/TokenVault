@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-background: #F4F4F1;
+  --color-card: #FFFFFF;
+  --color-subtle: #EAEAE6;
+  --color-border: #111110;
+  --color-border-dark: #111110;
+  --color-text-main: #111110;
+  --color-text-muted: #3A3A3A;
+  --color-text-subtle: #757575;
+  --color-accent: #29A85C; /* Akademia green */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-inter: var(--font-inter), sans-serif;
+  --font-jakarta: var(--font-jakarta), sans-serif;
+  --font-mono: var(--font-mono), monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-text-main font-jakarta antialiased min-h-screen relative;
+  /* Add SVG noise filter */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-border-dark rounded-full; }
+
+/* Keep standard form components as Tailwind apply classes for ease */
+.btn, .btn-primary, .btn-secondary, .btn-danger, .btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 font-jakarta font-bold text-[14px] rounded-full cursor-pointer transition-all duration-150 whitespace-nowrap no-underline;
+}
+.btn:disabled, .btn-primary:disabled, .btn-secondary:disabled, .btn-danger:disabled, .btn-ghost:disabled { 
+  @apply opacity-50 cursor-not-allowed; 
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-black text-white border border-transparent;
+}
+.btn-primary:hover:not(:disabled) { @apply bg-[#222] scale-105; }
+.btn-primary:active:not(:disabled) { @apply scale-95; }
+
+.btn-secondary {
+  @apply px-6 py-3 bg-transparent text-text-main border-2 border-black;
+}
+.btn-secondary:hover:not(:disabled) { @apply bg-black text-white; }
+
+.btn-danger {
+  @apply px-6 py-3 bg-red-50 text-red-600 border-2 border-red-200;
+}
+.btn-danger:hover:not(:disabled) { @apply bg-red-100; }
+
+.btn-ghost {
+  @apply px-4 py-2 bg-transparent text-text-subtle border border-transparent;
+}
+.btn-ghost:hover { @apply bg-subtle text-text-main; }
+
+.btn-icon {
+  @apply p-2 w-10 h-10 bg-transparent text-text-main border border-black rounded-full;
+}
+.btn-icon:hover { @apply bg-black text-white; }
+
+.input {
+  @apply w-full px-5 py-3 bg-transparent text-text-main border-2 border-black rounded-full font-jakarta font-medium text-[15px] outline-none transition-all duration-150;
+}
+.input:focus { @apply ring-4 ring-black/10; }
+.input::placeholder { @apply text-text-subtle; }
+
+.spinner {
+  @apply w-16 px-2 py-2 bg-transparent text-text-main border-2 border-black rounded-full font-mono text-[13px] font-bold text-center outline-none transition-all duration-150;
+  -moz-appearance: textfield;
+}
+.spinner::-webkit-inner-spin-button,
+.spinner::-webkit-outer-spin-button { -webkit-appearance: none; }
+.spinner:focus { @apply ring-4 ring-black/10; }
+
+.tab {
+  @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-bold border-2 border-transparent cursor-pointer whitespace-nowrap transition-all duration-150 bg-transparent text-text-subtle font-jakarta;
+}
+.tab:hover { @apply bg-white border-black text-text-main; }
+.tab.active { @apply bg-black text-white border-black; }
+
+.label {
+  @apply block text-xs font-bold text-text-main mb-2 tracking-[0.02em] uppercase;
+}
+
+.overlay {
+  @apply fixed inset-0 z-[100] bg-black/40 backdrop-blur-[6px];
+}
+
+.dialog {
+  @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-[min(560px,calc(100vw-32px))] max-h-[calc(100vh-48px)] overflow-y-auto bg-background border-2 border-black rounded-[32px] shadow-[8px_8px_0_rgba(0,0,0,1)];
+}
+
+@keyframes fadeOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }

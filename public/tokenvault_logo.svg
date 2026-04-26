@@ -1,0 +1,91 @@
+<svg width="100%" viewBox="0 0 690 530" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>TokenVault Logo</title>
+  <desc>A geometric vault logo featuring a stylized T within a hexagonal vault ring</desc>
+
+  <defs>
+    <!-- Brutalist stark offset shadow -->
+    <filter id="brutalist-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="8" dy="8" stdDeviation="0" flood-color="#000000" flood-opacity="1"/>
+    </filter>
+  </defs>
+
+  <!-- Center point -->
+  <g transform="translate(340, 260)">
+
+    <!-- Outer decorative ring glow -->
+    <circle cx="0" cy="0" r="194" stroke="#000" stroke-width="4" stroke-dasharray="12 12" fill="none" opacity="1" />
+
+    <!-- Outer vault ring -->
+    <circle cx="0" cy="0" r="178" stroke="#000" stroke-width="8" fill="#FFF" filter="url(#brutalist-shadow)" />
+
+    <!-- Vault dial tick marks (major every 30°) -->
+    <g stroke="#000" stroke-width="5" stroke-linecap="butt">
+      <!-- 12 major ticks at 30° intervals -->
+      <line x1="0" y1="-178" x2="0" y2="-156" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(30)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(60)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(90)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(120)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(150)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(180)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(210)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(240)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(270)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(300)" />
+      <line x1="0" y1="-178" x2="0" y2="-156" transform="rotate(330)" />
+    </g>
+
+    <!-- Minor ticks -->
+    <g stroke="#000" stroke-width="2" stroke-linecap="butt" opacity="1">
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(10)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(20)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(40)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(50)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(70)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(80)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(100)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(110)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(130)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(140)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(160)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(170)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(190)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(200)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(220)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(230)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(250)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(260)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(280)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(290)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(310)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(320)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(340)" />
+      <line x1="0" y1="-178" x2="0" y2="-166" transform="rotate(350)" />
+    </g>
+
+    <!-- Vault bolt handles at 4 cardinal points (Green accent) -->
+    <circle cx="0" cy="-140" r="14" stroke="#000" stroke-width="4" fill="#29A85C" />
+    <circle cx="140" cy="0" r="14" stroke="#000" stroke-width="4" fill="#29A85C" />
+    <circle cx="0" cy="140" r="14" stroke="#000" stroke-width="4" fill="#29A85C" />
+    <circle cx="-140" cy="0" r="14" stroke="#000" stroke-width="4" fill="#29A85C" />
+
+    <!-- Inner ring (Yellow accent) -->
+    <circle cx="0" cy="0" r="116" stroke="#000" stroke-width="6" fill="#FDE68A" />
+
+    <!-- Hexagonal vault face (Blue accent) -->
+    <polygon points="0,-100 86.6,-50 86.6,50 0,100 -86.6,50 -86.6,-50" stroke="#000" stroke-width="6" fill="#3B82F6" />
+
+    <!-- Stylized T letterform — clean geometric -->
+    <!-- Horizontal bar of T -->
+    <rect x="-58" y="-46" width="116" height="30" stroke="#000" stroke-width="6" fill="#FFF" />
+    <!-- Vertical stem of T -->
+    <rect x="-15" y="-16" width="30" height="76" stroke="#000" stroke-width="6" fill="#FFF" />
+
+    <!-- Small notch at top of dial ring (pointer marker) -->
+    <polygon points="0,-190 -12,-174 12,-174" fill="#000" />
+
+    <!-- Center pivot dot -->
+    <circle cx="0" cy="0" r="8" fill="#000" />
+
+  </g>
+</svg>
