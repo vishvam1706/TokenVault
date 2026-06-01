@@ -3,17 +3,23 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { MODELS, getModelStatus, formatCountdown } from "@/lib/models";
-import { Pencil, Trash2, Tag, MoreHorizontal } from "lucide-react";
+import { Pencil, Trash2, Tag, MoreHorizontal, Eye, EyeOff } from "lucide-react";
 import clsx from "clsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export default function AccountCard({ account, activeModel, index, onEdit, onDelete, isPrivacyMode }) {
   const [now, setNow] = useState(Date.now());
+  const [isRevealed, setIsRevealed] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
+
+  // Reset individual reveal when global privacy mode changes
+  useEffect(() => {
+    setIsRevealed(false);
+  }, [isPrivacyMode]);
 
   const activeModelData = account.models?.find((m) => m.key === activeModel);
   const resetAt = activeModelData ? new Date(activeModelData.resetAt).getTime() : now;
@@ -32,6 +38,23 @@ export default function AccountCard({ account, activeModel, index, onEdit, onDel
     })
     : null;
 
+  const maskEmail = (email) => {
+    if (!email) return "";
+    const [user, domain] = email.split("@");
+    if (!user || !domain) return "••••••••";
+    if (user.length <= 3) return `${user[0] || ""}•••@${domain}`;
+    return `${user.slice(0, 3)}••••@${domain}`;
+  };
+
+  const maskNickname = (nickname) => {
+    if (!nickname) return "";
+    return "••••";
+  };
+
+  const showDetails = !isPrivacyMode || isRevealed;
+  const displayedEmail = showDetails ? account.email : maskEmail(account.email);
+  const displayedNickname = showDetails ? account.nickname : maskNickname(account.nickname);
+
   return (
     <Tooltip.Provider delayDuration={300}>
       <motion.div
@@ -47,21 +70,27 @@ export default function AccountCard({ account, activeModel, index, onEdit, onDel
         <div className="flex justify-between items-start">
           <div className="flex-1 min-w-0 pr-4">
             <div className="flex items-center gap-2 mb-1.5">
-              <span className={clsx(
-                "font-jakarta text-[14px] sm:text-[16px] font-bold text-text-main overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-300",
-                isPrivacyMode && "blur-[6px] hover:blur-none cursor-pointer"
-              )} title={isPrivacyMode ? "Hover to reveal email" : undefined}>
-                {account.email}
+              <span className="font-jakarta text-[14px] sm:text-[16px] font-bold text-text-main overflow-hidden text-ellipsis whitespace-nowrap">
+                {displayedEmail}
               </span>
+              {isPrivacyMode && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsRevealed(!isRevealed);
+                  }}
+                  className="p-1 rounded-md text-text-subtle hover:bg-black/5 hover:text-text-main transition-colors shrink-0 outline-none cursor-pointer"
+                  title={isRevealed ? "Hide details" : "Reveal details"}
+                >
+                  {isRevealed ? <EyeOff size={14} /> : <Eye size={14} />}
+                </button>
+              )}
             </div>
             {account.nickname && (
               <div className="flex items-center gap-1.5">
                 <Tag size={12} className="text-text-subtle" />
-                <span className={clsx(
-                  "text-xs text-text-muted transition-all duration-300",
-                  isPrivacyMode && "blur-[4px] hover:blur-none cursor-pointer"
-                )} title={isPrivacyMode ? "Hover to reveal nickname" : undefined}>
-                  {account.nickname}
+                <span className="text-xs text-text-muted">
+                  {displayedNickname}
                 </span>
               </div>
             )}

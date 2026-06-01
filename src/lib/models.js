@@ -3,15 +3,15 @@
  * These are the exact models available on the platform — not user-defined.
  */
 export const MODELS = [
-  { key: "gemini-3-1-pro-high", label: "Gemini 3.1 Pro (High)", badge: "NEW" },
-  { key: "gemini-3-1-pro-low",  label: "Gemini 3.1 Pro (Low)",  badge: "NEW" },
-  { key: "gemini-3-flash",      label: "Gemini 3 Flash",        badge: null  },
-  { key: "gemini-3-5-flash-high", label: "Gemini 3.5 Flash (High)", badge: "NEW" },
-  { key: "gemini-3-5-flash-medium", label: "Gemini 3.5 Flash (Medium)", badge: "NEW" },
-  { key: "gemini-3-5-flash-low",  label: "Gemini 3.5 Flash (Low)",  badge: "NEW" },
-  { key: "claude-sonnet-4-6",   label: "Claude Sonnet 4.6 (Thinking)", badge: null },
-  { key: "claude-opus-4-6",     label: "Claude Opus 4.6 (Thinking)",   badge: null },
-  { key: "gpt-oss-120b",        label: "GPT-OSS 120B (Medium)", badge: null  },
+  { key: "gemini-3-1-pro-high", label: "Gemini 3.1 Pro (High)", badge: null },
+  { key: "gemini-3-1-pro-low", label: "Gemini 3.1 Pro (Low)", badge: null },
+  { key: "gemini-3-flash", label: "Gemini 3 Flash", badge: null },
+  { key: "gemini-3-5-flash-high", label: "Gemini 3.5 Flash (High)", badge: null },
+  { key: "gemini-3-5-flash-medium", label: "Gemini 3.5 Flash (Medium)", badge: null },
+  { key: "gemini-3-5-flash-low", label: "Gemini 3.5 Flash (Low)", badge: null },
+  { key: "claude-sonnet-4-6", label: "Claude Sonnet 4.6 (Thinking)", badge: null },
+  { key: "claude-opus-4-6", label: "Claude Opus 4.6 (Thinking)", badge: null },
+  { key: "gpt-oss-120b", label: "GPT-OSS 120B (Medium)", badge: null },
 ];
 
 export const DEFAULT_MODEL = "claude-sonnet-4-6";
