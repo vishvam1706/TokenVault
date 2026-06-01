@@ -15,7 +15,7 @@ export default function LoginPage() {
     }
   }, [status, router]);
   return (
-    <div className="min-h-screen flex relative overflow-hidden bg-background">
+    <div className="min-h-screen flex flex-col lg:flex-row relative overflow-hidden bg-background">
       
       {/* ── Geometric Accents ── */}
       <motion.div 
@@ -114,7 +114,7 @@ export default function LoginPage() {
       </div>
 
       {/* ── Right panel ── */}
-      <div className="flex-1 flex items-center justify-center p-12 z-10 relative">
+      <div className="hidden lg:flex flex-1 items-center justify-center p-12 z-10 relative">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}

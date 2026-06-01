@@ -3,7 +3,7 @@ import { useState, useMemo, useCallback, useEffect } from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { Plus, LayoutGrid, Loader2, Search, Filter } from "lucide-react";
+import { Plus, LayoutGrid, Loader2, Search, Filter, Eye, EyeOff } from "lucide-react";
 import clsx from "clsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { DEFAULT_MODEL } from "@/lib/models";
@@ -22,6 +22,22 @@ export default function DashboardClient({ initialAccounts }) {
   const [editTarget, setEditTarget] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [isPrivacyMode, setIsPrivacyMode] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("tokenvault_privacy_mode");
+    if (saved === "true") {
+      setIsPrivacyMode(true);
+    }
+  }, []);
+
+  const togglePrivacyMode = () => {
+    setIsPrivacyMode((prev) => {
+      const next = !prev;
+      localStorage.setItem("tokenvault_privacy_mode", String(next));
+      return next;
+    });
+  };
 
   // Client-side refresh: always fetch from API on mount so stale SSR data never shows
   useEffect(() => {
@@ -179,6 +195,20 @@ export default function DashboardClient({ initialAccounts }) {
                 </DropdownMenu.Content>
               </DropdownMenu.Portal>
             </DropdownMenu.Root>
+
+            {/* Privacy Mode Toggle */}
+            <button
+              id="privacy-toggle-btn"
+              onClick={togglePrivacyMode}
+              className={clsx(
+                "flex items-center justify-center gap-2 h-[48px] w-full sm:w-auto px-5 rounded-full border-2 border-black font-jakarta text-[14px] font-bold shadow-[4px_4px_0_rgba(0,0,0,1)] hover:-translate-y-[2px] hover:shadow-[6px_6px_0_rgba(0,0,0,1)] transition-all outline-none shrink-0",
+                isPrivacyMode ? "bg-[#A7F3D0] text-black" : "bg-white text-text-main"
+              )}
+              title={isPrivacyMode ? "Disable Privacy Mode" : "Enable Privacy Mode"}
+            >
+              {isPrivacyMode ? <EyeOff size={16} /> : <Eye size={16} />}
+              <span>{isPrivacyMode ? "Privacy Mode On" : "Privacy Mode Off"}</span>
+            </button>
           </div>
           <button
             id="add-account-btn"
@@ -217,6 +247,7 @@ export default function DashboardClient({ initialAccounts }) {
                   index={i}
                   onEdit={setEditTarget}
                   onDelete={setDeleteTarget}
+                  isPrivacyMode={isPrivacyMode}
                 />
               ))}
             </AnimatePresence>

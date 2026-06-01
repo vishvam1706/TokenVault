@@ -7,7 +7,7 @@ import { Pencil, Trash2, Tag, MoreHorizontal } from "lucide-react";
 import clsx from "clsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-export default function AccountCard({ account, activeModel, index, onEdit, onDelete }) {
+export default function AccountCard({ account, activeModel, index, onEdit, onDelete, isPrivacyMode }) {
   const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
@@ -47,14 +47,22 @@ export default function AccountCard({ account, activeModel, index, onEdit, onDel
         <div className="flex justify-between items-start">
           <div className="flex-1 min-w-0 pr-4">
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="font-jakarta text-[14px] sm:text-[16px] font-bold text-text-main overflow-hidden text-ellipsis whitespace-nowrap">
+              <span className={clsx(
+                "font-jakarta text-[14px] sm:text-[16px] font-bold text-text-main overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-300",
+                isPrivacyMode && "blur-[6px] hover:blur-none cursor-pointer"
+              )} title={isPrivacyMode ? "Hover to reveal email" : undefined}>
                 {account.email}
               </span>
             </div>
             {account.nickname && (
               <div className="flex items-center gap-1.5">
                 <Tag size={12} className="text-text-subtle" />
-                <span className="text-xs text-text-muted">{account.nickname}</span>
+                <span className={clsx(
+                  "text-xs text-text-muted transition-all duration-300",
+                  isPrivacyMode && "blur-[4px] hover:blur-none cursor-pointer"
+                )} title={isPrivacyMode ? "Hover to reveal nickname" : undefined}>
+                  {account.nickname}
+                </span>
               </div>
             )}
           </div>

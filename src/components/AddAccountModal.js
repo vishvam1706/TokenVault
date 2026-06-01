@@ -23,9 +23,9 @@ export default function AddAccountModal({ open, onClose, onSaved }) {
         Object.keys(next).forEach((k) => {
           if (k.startsWith("claude-") || k === "gpt-oss-120b") next[k] = { ...next[k], [field]: n };
         });
-      } else if (key.startsWith("gemini-3-1-pro")) {
+      } else if (key.startsWith("gemini-")) {
         Object.keys(next).forEach((k) => {
-          if (k.startsWith("gemini-3-1-pro")) next[k] = { ...next[k], [field]: n };
+          if (k.startsWith("gemini-")) next[k] = { ...next[k], [field]: n };
         });
       } else {
         next[key] = { ...next[key], [field]: n };
