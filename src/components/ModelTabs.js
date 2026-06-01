@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 export default function ModelTabs({ activeModel, onModelChange }) {
   return (
-    <div className="relative w-full overflow-x-auto pb-3 scrollbar-none">
-      {/* Premium Neobrutalist Sliding Track */}
-      <div className="inline-flex p-1.5 bg-[#EAEAE6] rounded-full border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,1)] gap-1">
+    <div className="relative w-full">
+      {/* Premium Neobrutalist Wrapping Container */}
+      <div className="flex flex-wrap p-1.5 bg-[#EAEAE6] rounded-[20px] sm:rounded-full border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,1)] gap-1.5">
         {MODELS.map((model) => {
           const isActive = activeModel === model.key;
           return (
